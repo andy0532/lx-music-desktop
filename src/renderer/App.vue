@@ -69,6 +69,32 @@ body {
   box-sizing: border-box;
 }
 
+// Glass theme: top accent line
+#root::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 5%;
+  right: 5%;
+  height: 1px;
+  background: var(--glass-accent-line, transparent);
+  z-index: 100;
+  pointer-events: none;
+}
+
+// Glass theme: self-illuminating ambient glow
+#root::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--glass-self-glow, transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+
 .disableAnimation * {
   transition: none !important;
   animation: none !important;
@@ -131,6 +157,10 @@ body {
 #left {
   flex: none;
   width: @width-app-left;
+
+  // Glass theme: backdrop blur for sidebar
+  backdrop-filter: blur(var(--glass-blur, 0px));
+  -webkit-backdrop-filter: blur(var(--glass-blur, 0px));
 }
 #right {
   flex: auto;
@@ -143,6 +173,11 @@ body {
   border-bottom-left-radius: @radius-border;
   overflow: hidden;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+
+  // Glass theme: backdrop blur
+  backdrop-filter: blur(var(--glass-blur, 0px));
+  -webkit-backdrop-filter: blur(var(--glass-blur, 0px));
+  border-left: var(--glass-border-glow, none);
 }
 #toolbar, #player {
   flex: none;
